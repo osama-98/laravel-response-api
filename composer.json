@@ -1,7 +1,13 @@
 {
     "name": "osama-98/laravel-response-api",
     "description": "A package for optimizing and unifying the response of laravel API",
-    "keywords": ["laravel-api", "laravel-response-api", "laravel", "package","php"],
+    "keywords": [
+        "php",
+        "laravel",
+        "laravel-api",
+        "laravel-response-api",
+        "package"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -14,6 +20,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.22",
+        "orchestra/testbench": "^10.3",
         "peckphp/peck": "^0.1.3",
         "pestphp/pest": "^3.8",
         "pestphp/pest-plugin-type-coverage": "^3.5",
