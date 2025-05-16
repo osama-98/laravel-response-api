@@ -1,29 +1,29 @@
 {
-    "name": "nunomaduro/skeleton-php",
-    "description": "A skeleton repository for my packages",
-    "keywords": ["php", "skeleton", "package"],
+    "name": "osama-98/laravel-response-api",
+    "description": "A package for optimizing and unifying the response of laravel API",
+    "keywords": ["laravel-api", "laravel-response-api", "laravel", "package","php"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Osama Sadah",
+            "email": "osama.sada98@gmail.com"
         }
     ],
     "require": {
         "php": "^8.3.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.18.1",
-        "peckphp/peck": "^0.1.1",
-        "pestphp/pest": "^3.5.1",
-        "pestphp/pest-plugin-type-coverage": "^3.1",
-        "phpstan/phpstan": "^1.12.7",
-        "rector/rector": "^1.2.8",
-        "symfony/var-dumper": "^7.1.6"
+        "laravel/pint": "^1.22",
+        "peckphp/peck": "^0.1.3",
+        "pestphp/pest": "^3.8",
+        "pestphp/pest-plugin-type-coverage": "^3.5",
+        "phpstan/phpstan": "^1.12",
+        "rector/rector": "^1.2",
+        "symfony/var-dumper": "^7.2"
     },
     "autoload": {
         "psr-4": {
-            "NunoMaduro\\SkeletonPhp\\": "src/"
+            "Osama\\ApiResponse\\": "src/"
         }
     },
     "autoload-dev": {
