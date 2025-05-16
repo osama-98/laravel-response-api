@@ -138,7 +138,7 @@ class ApiResponseBuilder
                 'message' => $this->firstMessage(),
                 'body' => $this->data,
                 'errors' => $this->errors,
-            ], fn ($value) => ! is_null($value)),
+            ], fn ($value): bool => ! is_null($value)),
             status: $this->status
         );
     }
