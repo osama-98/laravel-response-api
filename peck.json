@@ -1,5 +1,5 @@
 {
-    "preset": "base",
+    "preset": "laravel",
     "ignore": {
         "words": [
             "php"

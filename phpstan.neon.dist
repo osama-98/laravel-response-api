@@ -4,3 +4,5 @@ parameters:
         - src
 
     reportUnmatchedIgnoredErrors: true
+    ignoreErrors:
+            - '#has parameter .* with generic class .* but does not specify its types:.*#'

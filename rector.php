@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -11,7 +11,7 @@ return RectorConfig::configure()
         __DIR__.'/tests',
     ])
     ->withSkip([
-        AddOverrideAttributeToOverriddenMethodsRector::class,
+        RemoveUselessReturnTagRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,

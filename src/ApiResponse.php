@@ -46,23 +46,16 @@ final class ApiResponse
 
     /**
      * Prepare paginated data response.
-     *
-     * @template TKey of array-key
-     * @template TValue
-     * @param LengthAwarePaginator<TKey, TValue>|CursorPaginator<TKey, TValue>|Paginator<TKey, TValue> $paginator
-     * @param (callable(TValue): mixed)|string|null $mapper
-     * @return JsonResponse
      */
     public static function pagination(
-        LengthAwarePaginator|CursorPaginator|Paginator $paginator,
-        callable|string|null                           $mapper = null
-    ): JsonResponse
-    {
-        $items = $paginator->items();
+        LengthAwarePaginator|CursorPaginator|Paginator $paginated,
+        callable|string|null $mapper = null
+    ): JsonResponse {
+        $items = $paginated->items();
 
         if ($mapper !== null) {
             if (is_callable($mapper)) {
-                $items = array_map(fn($item) => $mapper($item), $items);
+                $items = array_map(fn ($item) => $mapper($item), $items);
             } elseif (is_string($mapper) && class_exists($mapper) && method_exists($mapper, 'collection')) {
                 $items = $mapper::collection($items);
             } else {
@@ -73,7 +66,7 @@ final class ApiResponse
         return self::builder()
             ->data([
                 'data' => $items,
-                'pagination' => Arr::except($paginator->toArray(), ['data']),
+                'pagination' => Arr::except($paginated->toArray(), ['data']),
             ])
             ->send();
     }

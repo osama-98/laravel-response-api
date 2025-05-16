@@ -81,32 +81,6 @@ class ApiResponseBuilder
     }
 
     /**
-     * Mark this as an error response
-     *
-     * @return $this
-     */
-    public function asError(): self
-    {
-        if ($this->status === Response::HTTP_OK) {
-            $this->status = Response::HTTP_BAD_REQUEST;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Mark this as a server error response
-     *
-     * @return $this
-     */
-    public function asServerError(): self
-    {
-        $this->status = Response::HTTP_INTERNAL_SERVER_ERROR;
-
-        return $this;
-    }
-
-    /**
      * Retrieve the first message or error
      */
     private function firstMessage(): ?string
