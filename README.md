@@ -1,6 +1,6 @@
 # ApiResponse Utility Class
 
-The `ApiResponse` class in the `App\Utilities\ApiResponse` namespace provides a fluent, expressive interface for creating standardized JSON API responses.
+The `ApiResponse` class provides a fluent, expressive interface for creating standardized JSON API responses.
 
 ---
 
