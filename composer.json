@@ -62,5 +62,6 @@
             "@test:types",
             "@test:unit"
         ]
-    }
+    },
+    "funding": null
 }
