@@ -2,10 +2,12 @@
 
 namespace Osama\ApiResponse;
 
+use Illuminate\Contracts\Pagination\CursorPaginator;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Pagination\CursorPaginator;
+use Illuminate\Pagination\CursorPaginator as ConcreteCursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\Paginator as ConcretePaginator;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,11 +48,14 @@ final class ApiResponse
 
     /**
      * Prepare paginated data response.
+     *
+     * @param  CursorPaginator<int, mixed>|Paginator<int, mixed>  $paginated
      */
     public static function pagination(
-        LengthAwarePaginator|CursorPaginator|Paginator $paginated,
+        CursorPaginator|Paginator $paginated,
         callable|string|null $mapper = null
     ): JsonResponse {
+        /** @var LengthAwarePaginator<int, mixed>|ConcreteCursorPaginator<int, mixed>|ConcretePaginator<int, mixed> $paginated */
         $items = $paginated->items();
 
         if ($mapper !== null) {
@@ -66,7 +71,7 @@ final class ApiResponse
         return self::builder()
             ->data([
                 'data' => $items,
-                'pagination' => Arr::except($paginated->toArray(), ['data']),
+                'pagination' => Arr::except($paginated->jsonSerialize(), ['data']),
             ])
             ->send();
     }
