@@ -75,4 +75,71 @@ final class ApiResponse
             ])
             ->send();
     }
+
+    /**
+     * Successfully created response handler
+     */
+    public static function created(
+        mixed $body = null,
+        ?string $resource = null,
+        ?string $message = null,
+        int $status = Response::HTTP_CREATED
+    ): JsonResponse {
+        /** @var string|null $message */
+        $message = $message ?: __('api-response::messages.resource_created', ['resource' => $resource]);
+
+        return self::success(
+            data: $body,
+            message: $message,
+            status: $status
+        );
+    }
+
+    /**
+     * Successfully updated response handler
+     */
+    public static function updated(
+        mixed $body,
+        ?string $resource = null,
+        ?string $message = null,
+        int $status = Response::HTTP_OK
+    ): JsonResponse {
+        /** @var string|null $message */
+        $message = $message ?: __('api-response::messages.resource_updated', ['resource' => $resource]);
+
+        return self::success(
+            data: $body,
+            message: $message,
+            status: $status
+        );
+    }
+
+    /**
+     * Destroy response handler
+     */
+    public static function destroyed(
+        bool $destroyed,
+        ?string $resource = null,
+        ?string $message = null,
+        int $successCode = Response::HTTP_OK,
+        int $errorCode = Response::HTTP_BAD_REQUEST
+    ): JsonResponse {
+        if ($destroyed) {
+            /** @var string $deletedMessage */
+            $deletedMessage = __('api-response::messages.resource_deleted', ['resource' => $resource]);
+
+            return self::success(
+                message: $deletedMessage,
+                status: $successCode
+            );
+        }
+
+        /** @var string $notFoundMessage */
+        $notFoundMessage = $message ?: __('api-response::messages.resource_not_found', ['resource' => $resource]);
+
+        return self::error(
+            message: $notFoundMessage,
+            status: $errorCode
+        );
+    }
 }
