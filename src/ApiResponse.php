@@ -80,7 +80,7 @@ final class ApiResponse
      * Successfully created response handler
      */
     public static function created(
-        mixed $body = null,
+        mixed $data = null,
         ?string $resource = null,
         ?string $message = null,
         int $status = Response::HTTP_CREATED
@@ -89,7 +89,7 @@ final class ApiResponse
         $message = $message ?: __('api-response::messages.resource_created', ['resource' => $resource]);
 
         return self::success(
-            data: $body,
+            data: $data,
             message: $message,
             status: $status
         );
@@ -99,7 +99,7 @@ final class ApiResponse
      * Successfully updated response handler
      */
     public static function updated(
-        mixed $body,
+        mixed $data,
         ?string $resource = null,
         ?string $message = null,
         int $status = Response::HTTP_OK
@@ -108,7 +108,7 @@ final class ApiResponse
         $message = $message ?: __('api-response::messages.resource_updated', ['resource' => $resource]);
 
         return self::success(
-            data: $body,
+            data: $data,
             message: $message,
             status: $status
         );
