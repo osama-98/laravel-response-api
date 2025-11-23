@@ -6,7 +6,9 @@
         "laravel",
         "laravel-api",
         "laravel-response-api",
-        "package"
+        "package",
+        "laravel response api",
+        "laravel api"
     ],
     "license": "MIT",
     "authors": [
