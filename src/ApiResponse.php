@@ -53,7 +53,8 @@ final class ApiResponse
      */
     public static function pagination(
         CursorPaginator|Paginator $paginated,
-        callable|string|null $mapper = null
+        callable|string|null $mapper = null,
+        array|null $meta = []
     ): JsonResponse {
         /** @var LengthAwarePaginator<int, mixed>|ConcreteCursorPaginator<int, mixed>|ConcretePaginator<int, mixed> $paginated */
         $items = $paginated->items();
@@ -72,6 +73,7 @@ final class ApiResponse
             ->data([
                 'data' => $items,
                 'pagination' => Arr::except($paginated->jsonSerialize(), ['data']),
+                ...(! empty($meta) ? ['meta' => $meta] : []),
             ])
             ->send();
     }
