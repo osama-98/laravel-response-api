@@ -123,7 +123,7 @@ final class ApiResponse
      * Destroy response handler
      */
     public static function destroyed(
-        bool    $destroyed,
+        bool    $destroyed = true,
         ?string $resource = null,
         ?string $message = null,
         int     $successCode = Response::HTTP_OK,
