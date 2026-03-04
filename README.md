@@ -13,10 +13,17 @@ You can install the package via composer:
 composer require osama-98/laravel-response-api
 ```
 
+## Version Compatibility
+
+| Package | Laravel | PHP |
+|---------|---------|-----|
+| 2.x | 12.x | ^8.3 |
+| 1.x | 10.x \| 11.x | ^8.1 |
+
 ## Requirements
 
-- PHP ^8.0
-- Laravel ^8.0
+- PHP ^8.3
+- Laravel ^12.0
 
 ## Response Structure
 
