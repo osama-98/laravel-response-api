@@ -6,13 +6,15 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
+    #[\Override]
     protected function getPackageProviders($app): array
     {
         return [
-            // Add your service providers here, if any
+            \Osama\ApiResponse\ApiResponseServiceProvider::class,
         ];
     }
 
+    #[\Override]
     protected function defineEnvironment($app): void
     {
         // Configure your environment here, if needed

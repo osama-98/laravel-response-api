@@ -21,12 +21,12 @@ test('pagination with length aware paginated', function (): void {
 
     $response = ApiResponse::pagination($paginated);
 
-    expect($response)
-        ->toBeInstanceOf(JsonResponse::class)
-        ->and($response->getData(true))
-        ->toHaveKey('body')
-        ->and($response->getData(true)['body'])
-        ->toHaveKeys(['data', 'pagination']);
+    /** @var array<string, mixed> $data */
+    $data = $response->getData(true);
+
+    expect($response)->toBeInstanceOf(JsonResponse::class)
+        ->and($data)->toHaveKey('body')
+        ->and($data['body'])->toHaveKeys(['data', 'pagination']);
 });
 
 test('pagination with cursor paginated', function (): void {
@@ -38,24 +38,26 @@ test('pagination with cursor paginated', function (): void {
 
     $response = ApiResponse::pagination($paginated);
 
-    expect($response)
-        ->toBeInstanceOf(JsonResponse::class)
-        ->and($response->getData(true))
-        ->toHaveKey('body')
-        ->and($response->getData(true)['body'])
-        ->toHaveKeys(['data', 'pagination']);
+    /** @var array<string, mixed> $data */
+    $data = $response->getData(true);
+
+    expect($response)->toBeInstanceOf(JsonResponse::class)
+        ->and($data)->toHaveKey('body')
+        ->and($data['body'])->toHaveKeys(['data', 'pagination']);
 });
 
 test('pagination with callable mapper', function (): void {
     $items = ['item1', 'item2'];
     $paginated = new Paginator($items, 2);
-    $mapper = fn ($item) => strtoupper($item);
+    $mapper = fn (string $item) => strtoupper($item);
 
     $response = ApiResponse::pagination($paginated, $mapper);
 
-    expect($response)
-        ->toBeInstanceOf(JsonResponse::class)
-        ->and($response->getData(true)['body']['data'])->toBe(['ITEM1', 'ITEM2']);
+    /** @var array<string, array<string, mixed>> $data */
+    $data = $response->getData(true);
+
+    expect($response)->toBeInstanceOf(JsonResponse::class)
+        ->and($data['body']['data'])->toBe(['ITEM1', 'ITEM2']);
 });
 
 test('pagination with invalid mapper throws exception', function (): void {

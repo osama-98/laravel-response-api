@@ -4,6 +4,7 @@ namespace Osama\ApiResponse\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Override;
 
 class FooResource extends JsonResource
 {
@@ -12,6 +13,7 @@ class FooResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+    #[Override]
     public function toArray(Request $request): array
     {
         return [

@@ -61,19 +61,20 @@ final class ApiResponse
         if ($mapper !== null) {
             if (is_callable($mapper)) {
                 $items = array_map(fn ($item) => $mapper($item), $items);
-            } elseif (is_string($mapper) && class_exists($mapper) && method_exists($mapper, 'collection')) {
+            } elseif (class_exists($mapper) && method_exists($mapper, 'collection')) {
                 $items = $mapper::collection($items);
             } else {
                 throw new InvalidArgumentException('Invalid mapper provided');
             }
         }
 
-        /** @var Arrayable<string, mixed> $paginated */
+        assert($paginated instanceof Arrayable);
+
         return self::builder()
             ->data([
                 'data' => $items,
                 'pagination' => Arr::except($paginated->toArray(), ['data']),
-                ...(! empty($meta) ? ['meta' => $meta] : []),
+                ...($meta === null || $meta === [] ? [] : ['meta' => $meta]),
             ])
             ->send();
     }

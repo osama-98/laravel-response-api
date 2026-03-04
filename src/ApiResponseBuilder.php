@@ -93,10 +93,12 @@ class ApiResponseBuilder
             $fieldError = Arr::first(Arr::wrap($this->errors));
 
             if (is_array($fieldError)) { // has multiple errors for a field
-                return Arr::first($fieldError);
+                $first = Arr::first($fieldError);
+
+                return is_string($first) ? $first : null;
             }
 
-            return $fieldError;
+            return is_string($fieldError) ? $fieldError : null;
         }
 
         return null;
